@@ -135,9 +135,10 @@ namespace DapperCMDProject
                 const string deleteColumnCat = "delete from ColumnCat where id=@id";
 
                 IDbTransaction transaction = conn.BeginTransaction();
+                int row;
                 try
                 {
-                    int row = conn.Execute(deleteColumn, new { catid = cat.Id }, transaction, null, null);
+                    row = conn.Execute(deleteColumn, new { catid = cat.Id }, transaction, null, null);
                     row += conn.Execute(deleteColumnCat, new { id = cat.Id }, transaction, null, null);
                     transaction.Commit();
                 }
